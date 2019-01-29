@@ -16,12 +16,14 @@ Array.prototype.myMap = function (callback) {
 Array.prototype.mySort = function (callback) {
   if (callback === undefined) {
     for (let i = 0; i < this.length; i++) {
-      if (('' + this[i]) < ('' + this[i + 1])) {
+      for(let j = i; j < this.length -1; j++) {
+        if (this[i] < this[j + 1]) {
 
-      } else {
-        let temp = this[i];
-        this[i] = this[i + 1];
-        this[i + 1] = temp
+        } else {
+          let temp = this[i];
+          this[i] = this[j + 1];
+          this[j + 1] = temp
+        }
       }
     }
   } else {
@@ -45,3 +47,4 @@ Array.prototype.myFilter = function (callback) {
 
   return newArr
 };
+
