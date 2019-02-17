@@ -13,28 +13,24 @@ Array.prototype.myMap = function (callback) {
   return newArr
 };
 
-Array.prototype.mySort = function (callback) {
-  if (callback === undefined) {
-    for (let i = 0; i < this.length; i++) {
-      for(let j = i; j < this.length -1; j++) {
-        if (this[i] < this[j + 1]) {
+const a = [2,3,5,3,6,5,6,4,3,4,3,34,5435,3452,3,-34,-234234];
 
-        } else {
-          let temp = this[i];
-          this[i] = this[j + 1];
+Array.prototype.mySort = function (callback) {
+    for (let i = 0; i < this.length; i++) {
+      for(let j = 0; j < (this.length - i - 1); j++) {
+        if (callback && callback(this[j], this[j + 1]) > 0) {
+          let temp = this[j];
+          this[j] = this[j + 1];
+          this[j + 1] = temp
+        } else if (!callback && this[j].toString() > this[j+1].toString()) {
+          let temp = this[j];
+          this[j] = this[j + 1];
           this[j + 1] = temp
         }
       }
     }
-  } else {
-    for (let i = 0; i < this.length; i++) {
-      callback(this[i], this[i + 1])
-    }
-  }
-
   return this
 };
-
 
 Array.prototype.myFilter = function (callback) {
   newArr = [];
